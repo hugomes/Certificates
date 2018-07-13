@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Even3Certificate", "Even3Certificate\Even3Certificate.csproj", "{7C56511F-EB36-42B5-B2D9-51078E6CA5EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Even3Certificate.Tests", "Even3Certificate.Tests\Even3Certificate.Tests.csproj", "{3159E066-8409-48A7-B9F6-777139D36D95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C56511F-EB36-42B5-B2D9-51078E6CA5EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C56511F-EB36-42B5-B2D9-51078E6CA5EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C56511F-EB36-42B5-B2D9-51078E6CA5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C56511F-EB36-42B5-B2D9-51078E6CA5EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3159E066-8409-48A7-B9F6-777139D36D95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3159E066-8409-48A7-B9F6-777139D36D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3159E066-8409-48A7-B9F6-777139D36D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3159E066-8409-48A7-B9F6-777139D36D95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {378FF8A4-BEBE-4A18-B535-162A77E683D0}
+	EndGlobalSection
+EndGlobal
