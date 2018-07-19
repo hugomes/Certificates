@@ -1,31 +1,74 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Certificados";
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script type="text/javascript">
+bkLib.onDomLoaded(function () {
+    new nicEditor(
+        {
+            buttonList:
+                ['fontSize', 'bold', 'italic']
+        }).panelInstance('textCertificate');
+});</script>
+<form method="post" enctype="multipart/form-data" class="form-horizontal">
+    <div class="form-group">
+        @if (ViewBag.SuccessReturn != "")
+        {
+        <h3 style="color: green">@ViewBag.SuccessReturn</h3>
+        }
+        @if (ViewBag.ErrorReturn != "")
+        {
+            <h3 style="color: red">@ViewBag.ErrorReturn</h3>
+        }
+        <h1>1 - Criar Modelo</h1>
+        <div>
+            <input onchange="loadBackgroundImage()" style="float: left" value="Anexar Imgem de Fundo" type="file" name="backgroundFile" id="backgroundFile"/>
+            <input type="hidden" name="imagePath" id="imagePath"/>
+            <a style="padding-left: 10px;" href="https://materiais.even3.com.br/templates-de-certificados" target="_blank">Dica: Templates de Certificados</a>
+        </div>
+        <h5 style="color: darkorange">Adicione a tag {{nome}} no texto para o preenchimento automatico do nome do participante.</h5>
+        <div id="backgroundDiv" class="backgroundDiv">
+            <div class="col-md-10 col-md-offset-1" style="padding-top: 180px;">
+                <textarea style="width: 100%" rows="12" name="textCertificate" id="textCertificate"></textarea>
+            </div>
+        </div>
+    </div>
+<div class="form-group">
+    <h1>2 - Importar Participantes</h1>
+    <label>Copie o conteúdo da planilha excel e cole aqui</label><br />
+    <textarea class="form-control" rows="20" name="participants"></textarea>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+<div class="form-group">
+    <h1>3 - Enviar Certificados</h1>
+    <input type="submit" value="Enviar por e-mail" />
 </div>
+</form>
+
+<script>
+function loadBackgroundImage() {
+    var data = new FormData();
+
+    var files = $("#backgroundFile").get(0).files;
+
+    if (files.length > 0) {
+        data.append("UploadedImage", files[0]);
+    }
+
+    console.log(files);
+    console.log(data);
+    $.ajax({
+        type: "POST",
+        url: "/Home/UploadImageBackground",
+        contentType: false,
+        processData: false,
+        data: data
+    }).done(function (result) {
+        $("#backgroundDiv").attr("style", "background-image: url(" + result[0] + "); background-size: 842px 595px;");
+        $("#imagePath").val(result[1]);
+    })
+        .fail(function (data) {
+            console.log("falhou");
+            console.log(data.responseText);
+        });
+}
+</script>
